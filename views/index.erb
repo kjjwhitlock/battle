@@ -1,0 +1,9 @@
+<h1>My name is <%= @cat_name %> and I am <%= @cat_age %> years old</h1>
+<% if !@cat_name %>
+<form action = "/named_cat" method = "get">
+  <input type="text" name="name">
+  <input type="text" name="age">
+  <input type="submit" value="Submit">
+</form>
+<% end %>
+<img style ="border:5px dashed red" src="https://i.pinimg.com/736x/c2/5c/ab/c25cab4611e9f641c9751228a57ca7ab.jpg"></img>
