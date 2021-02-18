@@ -1,25 +1,29 @@
-require 'sinatra'
+require 'sinatra/base'
 
-get '/' do
-  "hello"
-end
+class Battle < Sinatra::Base
+  enable :sessions
 
-get '/secret' do
-  'can I make this work?'
-end
+  get '/' do
+    erb :index
+  end
 
-get '/random_cat' do
-  @cat_name = ["Bonebone", "Mao", "Curtis"].sample
-  erb(:index)
-end
+  get '/names' do
+    erb :play
+  end
 
-post '/named_cat' do
-  p params
-  @cat_name = params[:name]
-  @cat_age = params[:age]
-  erb(:index)
-end
+  post '/names' do
+    session[:player_1_name]= params[:player_1_name]
+    session[:player_2_name]= params[:player_2_name]
+    redirect '/play'
+  end
 
-get '/form' do
-  erb(:form)
+  get '/play' do
+    @player_1_name = session[:player_1_name]
+    @player_2_name = session[:player_2_name]
+    erb :play
+  end
+
+  # start the server if ruby file executed directly
+  run! if app_file == $0
+
 end
