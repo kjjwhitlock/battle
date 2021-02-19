@@ -9,6 +9,7 @@ feature 'reduce player points' do
   scenario 'reduce player points by 2' do
   sign_in_and_play
   click_link 'Attack'
+  click_link 'OK'
 expect(page).to have_content "Ruby: 70HP"
 end
 end
